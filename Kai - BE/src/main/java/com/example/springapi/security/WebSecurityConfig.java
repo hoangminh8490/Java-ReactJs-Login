@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(  "/oauth/**", "/register", "/authenticate").permitAll()
                 .anyRequest().authenticated().and()
+                .cors().and()
 //                .formLogin().loginPage("/authenticate").permitAll().and()
                 // make sure we use stateless session; session won't be used toAuthenticationManagerBuilder
                 // store user's state.
