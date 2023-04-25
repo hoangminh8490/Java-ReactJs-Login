@@ -34,6 +34,14 @@ const HomePage = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleService03 = () => {
+    fetch("http://localhost:8083/list")
+      .then((response) => response.json())
+      .then((res) => setList(res.value))
+      .then(() => setEnable01(true))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div>
@@ -44,6 +52,9 @@ const HomePage = () => {
             </button>
             <button className="link-btn" onClick={handleService02}>
               Service 2
+            </button>
+            <button className="link-btn" onClick={handleService03}>
+              Service 3
             </button>
           </div>
         ) : (

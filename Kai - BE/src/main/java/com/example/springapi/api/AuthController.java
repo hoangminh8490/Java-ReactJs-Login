@@ -1,5 +1,6 @@
 package com.example.springapi.api;
 
+import com.example.springapi.dto.TokenDTO;
 import com.example.springapi.security.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,8 @@ public class AuthController {
 
     @PostMapping("/auth/checkToken")
     public ResponseEntity<?> checkTokenService(@RequestHeader(name = "Authorization") String authorizationHeader){
-        String token = jwtTokenUtil.getUsernameFromToken(authorizationHeader);
-        return ResponseEntity.ok(token);
+        TokenDTO tokenDTO = new TokenDTO();
+        tokenDTO.setToken(authorizationHeader);
+        return ResponseEntity.ok(tokenDTO);
     }
 }
