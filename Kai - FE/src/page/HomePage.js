@@ -35,7 +35,14 @@ const HomePage = () => {
   };
 
   const handleService03 = () => {
-    fetch("http://localhost:8083/list")
+    const token = localStorage.getItem("token")
+      ? localStorage.getItem("token")
+      : "";
+    fetch("http://localhost:8083/list", {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+      },
+    })
       .then((response) => response.json())
       .then((res) => setList(res.value))
       .then(() => setEnable01(true))
