@@ -20,14 +20,14 @@ public class CustomInterceptor implements HandlerInterceptor {
     @Autowired
     private RestTemplate restTemplate;
 
-    
+
+
     @Override
     public boolean preHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST,  OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization");
         String requestTokenHeader = request.getHeader("Authorization");
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             String jwtToken = requestTokenHeader.substring(7);
@@ -42,7 +42,6 @@ public class CustomInterceptor implements HandlerInterceptor {
                 return false;
             }
         }else{
-            response.sendError(response.SC_UNAUTHORIZED, "Unauthorized");
             return false;
         }
     }

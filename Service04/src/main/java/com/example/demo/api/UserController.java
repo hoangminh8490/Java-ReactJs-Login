@@ -16,7 +16,7 @@ public class UserController {
 
     @GetMapping("/list")
     public ResponseEntity<?> listUser(){
-        UserDTO userDTO = new UserDTO("Welcome to KAL 03");
+        UserDTO userDTO = new UserDTO("Welcome to KAL 04");
         return ResponseEntity.ok(userDTO);
     }
 }

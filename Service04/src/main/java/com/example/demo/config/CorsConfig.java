@@ -13,16 +13,15 @@ public class CorsConfig implements WebMvcConfigurer {
     private CustomInterceptor customInterceptor;
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("Content-Type", "Authorization")
-                .allowCredentials(true);
-    }
-    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(customInterceptor);
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowCredentials(true);
+    }
 }

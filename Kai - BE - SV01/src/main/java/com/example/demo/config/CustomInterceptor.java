@@ -20,7 +20,8 @@ public class CustomInterceptor implements HandlerInterceptor {
     @Autowired
     private RestTemplate restTemplate;
 
-    
+
+
     @Override
     public boolean preHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -52,8 +53,8 @@ public class CustomInterceptor implements HandlerInterceptor {
             HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {}
 
-
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
                                 Object handler, Exception exception) throws Exception {}
+
 }

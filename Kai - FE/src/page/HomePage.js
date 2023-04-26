@@ -4,35 +4,35 @@ const HomePage = () => {
   const [list, setList] = useState("");
   const [enable01, setEnable01] = useState(false);
 
-  const handleService01 = () => {
-    const token = localStorage.getItem("token")
-      ? localStorage.getItem("token")
-      : "";
-    fetch("http://localhost:8081/list", {
-      headers: {
-        'Authorization': 'Bearer ' + token,
-      },
-    })
-      .then((response) => response.json())
-      .then((res) => setList(res.value))
-      .then(() => setEnable01(true))
-      .catch((err) => console.log(err));
-  };
+  // const handleService01 = () => {
+  //   const token = localStorage.getItem("token")
+  //     ? localStorage.getItem("token")
+  //     : "";
+  //   fetch("http://localhost:8081/list", {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((res) => setList(res.value))
+  //     .then(() => setEnable01(true))
+  //     .catch((err) => console.log(err));
+  // };
 
-  const handleService02 = () => {
-    const token = localStorage.getItem("token")
-      ? localStorage.getItem("token")
-      : "";
-    fetch("http://localhost:8082/list", {
-      headers: {
-        'Authorization': 'Bearer ' + token,
-      },
-    })
-      .then((response) => response.json())
-      .then((res) => setList(res.value))
-      .then(() => setEnable01(true))
-      .catch((err) => console.log(err));
-  };
+  // const handleService02 = () => {
+  //   const token = localStorage.getItem("token")
+  //     ? localStorage.getItem("token")
+  //     : "";
+  //   fetch("http://localhost:8082/list", {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((res) => setList(res.value))
+  //     .then(() => setEnable01(true))
+  //     .catch((err) => console.log(err));
+  // };
 
   const handleService03 = () => {
     const token = localStorage.getItem("token")
@@ -49,19 +49,37 @@ const HomePage = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleService04 = () => {
+    const token = localStorage.getItem("token")
+      ? localStorage.getItem("token")
+      : "";
+    fetch("http://localhost:8084/list", {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+      },
+    })
+      .then((response) => response.json())
+      .then((res) => setList(res.value))
+      .then(() => setEnable01(true))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div>
         {enable01 === false ? (
           <div>
-            <button className="link-btn" onClick={handleService01}>
+            {/* <button className="link-btn" onClick={handleService01}>
               Service 1
             </button>
             <button className="link-btn" onClick={handleService02}>
               Service 2
-            </button>
+            </button> */}
             <button className="link-btn" onClick={handleService03}>
               Service 3
+            </button>
+            <button className="link-btn" onClick={handleService04}>
+              Service 4
             </button>
           </div>
         ) : (
