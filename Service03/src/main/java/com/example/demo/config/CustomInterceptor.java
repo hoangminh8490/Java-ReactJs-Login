@@ -1,6 +1,8 @@
 package com.example.demo.config;
 
+import com.example.demo.dto.ErrorReponse;
 import com.example.demo.dto.TokenDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -16,17 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class CustomInterceptor implements HandlerInterceptor {
-
     @Autowired
     private RestTemplate restTemplate;
 
-    
     @Override
     public boolean preHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization");
         response.setHeader("Access-Control-Max-Age", "3600");
         String requestTokenHeader = request.getHeader("Authorization");
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
@@ -42,7 +42,11 @@ public class CustomInterceptor implements HandlerInterceptor {
                 return false;
             }
         }else{
-            response.sendError(response.SC_UNAUTHORIZED, "Unauthorized");
+            ErrorReponse errorReponse = new ErrorReponse("Unauthorized", "Missing authorization header");
+            String json = new ObjectMapper().writeValueAsString(errorReponse);
+            response.setContentType("application/json");
+            response.getWriter().write(json);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
         }
     }

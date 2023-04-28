@@ -26,7 +26,7 @@ public class CustomInterceptor implements HandlerInterceptor {
     public boolean preHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST,  OPTIONS");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Authorization");
         String requestTokenHeader = request.getHeader("Authorization");
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
@@ -34,7 +34,6 @@ public class CustomInterceptor implements HandlerInterceptor {
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(jwtToken);
             HttpEntity<?> entity = new HttpEntity<>(headers);
-
             ResponseEntity<TokenDTO> responses = restTemplate.exchange("http://localhost:8080/auth/checkToken", HttpMethod.POST, entity, TokenDTO.class);
             if (responses.getStatusCode() == HttpStatus.OK) {
                 return true;
@@ -42,6 +41,7 @@ public class CustomInterceptor implements HandlerInterceptor {
                 return false;
             }
         }else{
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
         }
     }

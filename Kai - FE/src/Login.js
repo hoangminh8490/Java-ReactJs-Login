@@ -17,19 +17,28 @@ const Login = () => {
     data.username = username;
     data.password = password;
     console.log("data", data);
-
-    fetch("http://localhost:8080/authenticate", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      //   .then((res) =>  setToken(res.token))
-      .then((res) => console.log("res", res))
-      .catch((err) => console.log(err));
+      try {
+        const response = await fetch("http://localhost:8080/authenticate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem("token", data.token);
+          navigate("/home");
+          console.log("Login user successful", data.token);
+        } else {
+          console.log("Login failed");
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+      }
   };
+  
 
   const onSuccessGoogle = async (response) => {
     // Gửi authCode đến trang backend của ứng dụng
@@ -49,7 +58,7 @@ const Login = () => {
         const data = await response.json();
         localStorage.setItem("token", data.token);
         navigate("/home");
-        console.log("Login successful", data.token);
+        console.log("Login Google successful", data.token);
       } else {
         console.log("Login failed");
       }

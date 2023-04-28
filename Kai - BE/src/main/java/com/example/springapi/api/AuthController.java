@@ -16,8 +16,6 @@ public class    AuthController {
 
     @PostMapping("/auth/checkToken")
     public ResponseEntity<?> checkTokenService(@RequestHeader(name = "Authorization") String authorizationHeader){
-        TokenDTO tokenDTO = new TokenDTO();
-        tokenDTO.setToken(authorizationHeader);
-        return ResponseEntity.ok(tokenDTO);
+        return ResponseEntity.ok().build();
     }
 }
