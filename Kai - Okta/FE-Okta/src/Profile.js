@@ -17,6 +17,8 @@ const Profile = () => {
     }
   }, [authState, oktaAuth]); // Update if authState changes
 
+  console.log('token', authState.accessToken.accessToken);
+
   const callBackend = async () => {
     const response = await fetch("http://localhost:8080/api/locked", {
       headers: {

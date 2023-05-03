@@ -1,6 +1,6 @@
-const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const REACT_APP_OKTA_DOMAIN = process.env.REACT_APP_OKTA_DOMAIN;
-const REACT_APP_PORT = process.env.REACT_APP_PORT;
+const REACT_APP_CLIENT_ID = '0oa9bmsrg7jzbUFwp5d7';
+const REACT_APP_OKTA_DOMAIN = 'dev-91267716.okta.com';
+const REACT_APP_PORT = '3001'
 
 export const oktaConfig = {
   clientId: `${REACT_APP_CLIENT_ID}`,
