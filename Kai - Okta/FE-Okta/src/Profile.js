@@ -20,7 +20,7 @@ const Profile = () => {
   console.log('token', authState.accessToken.accessToken);
 
   const callBackend = async () => {
-    const response = await fetch("http://localhost:8080/api/locked", {
+    const response = await fetch("http://localhost:8084/hello-oauth", {
       headers: {
         Authorization: `Bearer ${authState.accessToken.accessToken}`,
       },
@@ -78,26 +78,12 @@ const Profile = () => {
             })}
           </tbody>
         </table>
-        {/* <button onClick={callBackend}>Call api</button>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Message</th>
-            </tr>
-          </thead>
-          <tbody>
-            {messages?.map((message, index) => (
-              <tr key={index} id={message.id}>
-                <td>{message.date}</td>
-                <td>{message.text}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
+        <button onClick={callBackend}>Call api</button>
+        {messages?<div>{messages}</div>:''}
       </div>
     </div>
   );
 };
+
 
 export default Profile;

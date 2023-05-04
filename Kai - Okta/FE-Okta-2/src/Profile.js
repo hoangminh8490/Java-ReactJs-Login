@@ -18,7 +18,7 @@ const Profile = () => {
   }, [authState, oktaAuth]); // Update if authState changes
 
   const callBackend = async () => {
-    const response = await fetch("http://localhost:8080/hello-oauth", {
+    const response = await fetch("http://localhost:8083/hello-oauth", {
       headers: {
         Authorization: `Bearer ${authState.accessToken.accessToken}`,
       },

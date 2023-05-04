@@ -9,9 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private CustomInterceptor customInterceptor;
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/http://localhost:3000")
@@ -19,10 +16,6 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Content-Type", "Authorization")
                 .allowCredentials(true);
-    }
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(customInterceptor);
     }
 
 }
