@@ -38,7 +38,7 @@ const HomePage = () => {
     const token = localStorage.getItem("token")
       ? localStorage.getItem("token")
       : "";
-    fetch("http://localhost:8083/list", {
+    fetch("http://localhost:8081/list", {
       headers: {
         'Authorization': 'Bearer ' + token,
       },
@@ -53,7 +53,7 @@ const HomePage = () => {
     const token = localStorage.getItem("token")
       ? localStorage.getItem("token")
       : "";
-    fetch("http://localhost:8084/list", {
+    fetch("http://localhost:8082/list", {
       headers: {
         'Authorization': 'Bearer ' + token,
       },

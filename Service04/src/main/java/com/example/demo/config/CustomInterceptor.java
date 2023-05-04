@@ -41,7 +41,7 @@ public class CustomInterceptor implements HandlerInterceptor {
                 return false;
             }
         }else{
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
         }
     }
