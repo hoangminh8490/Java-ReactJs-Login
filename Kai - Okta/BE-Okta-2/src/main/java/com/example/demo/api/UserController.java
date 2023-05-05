@@ -17,8 +17,12 @@ import java.util.Collections;
 @RestController
 public class UserController {
 
+    @Autowired
+    private OAuth2AuthorizedClientService authorizedClientService;
+
     @GetMapping("/hello-oauth")
     public ResponseEntity<?> listUser(){
+
         UserDTO userDTO = new UserDTO("Welcome to Okta");
         return ResponseEntity.ok(userDTO);
     }
