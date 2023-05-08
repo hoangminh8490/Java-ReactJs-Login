@@ -1,7 +1,7 @@
 package com.example.demo.api;
 
-import com.example.demo.dto.UserDTO;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,15 +11,16 @@ import java.security.Principal;
 @RestController
 public class UserController {
 
-    @GetMapping("/hello-oauth")
-    public ResponseEntity<?> listUser(){
-        UserDTO userDTO = new UserDTO("Welcome to Okta");
-        return ResponseEntity.ok(userDTO);
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/cool-cars")
     public String hello(Principal principal){
-        return "hello" + principal;
+        if(!userService.isUserNameAlready(principal.getName())){
+            userService.saveUser(principal.getName());
+            System.out.println("saved succefully");
+        }
+        return "hello" + principal.getName();
     }
 
 }

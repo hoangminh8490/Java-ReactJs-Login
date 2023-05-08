@@ -1,17 +1,32 @@
 package com.example.demo.dto;
 
 public class UserDTO {
-    private String value;
 
-    public UserDTO(String value) {
-        this.value = value;
+    private String username;
+    private String password;
+    private String status;
+
+    public String getUsername() {
+        return username;
     }
 
-    public String getValue() {
-        return value;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
