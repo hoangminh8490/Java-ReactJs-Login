@@ -20,4 +20,8 @@ public class ProfileDTO {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public ProfileDTO(String description) {
+        this.description = description;
+    }
 }

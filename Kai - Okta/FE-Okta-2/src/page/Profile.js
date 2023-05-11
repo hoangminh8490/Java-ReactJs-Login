@@ -18,7 +18,7 @@ const Profile = () => {
   }, [authState, oktaAuth]); // Update if authState changes
 
   const callBackend = async () => {
-    const response = await fetch("http://localhost:8083/hello-oauth", {
+    const response = await fetch("http://localhost:8083/cool-cars", {
       headers: {
         Authorization: `Bearer ${authState.accessToken.accessToken}`,
       },
@@ -28,10 +28,11 @@ const Profile = () => {
       return Promise.reject();
     }
     const data = await response.json();
-    setMessages(data.value);
+    setMessages(data.description);
   };
 
   console.log('token', authState.accessToken.accessToken)
+  console.log('message', messages)
 
   if (!userInfo) {
     return (
