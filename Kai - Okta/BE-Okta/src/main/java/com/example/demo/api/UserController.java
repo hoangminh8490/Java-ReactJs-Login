@@ -4,6 +4,7 @@ import com.example.demo.dto.ProfileDTO;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +20,10 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/cool-cars")
-//    @PreAuthorize("hasAnyRole('app-admin')")
+//    @PreAuthorize("hasRole('app-admin')")
 //    @PreAuthorize("hasAuthority('SCOPE_app-role')")
-    @RolesAllowed("app-minh")
+//    @RolesAllowed("app-admin")
+//    @Secured("app-admin")
     public ResponseEntity<?> hello(Principal principal){
 
         if(!userService.isUserNameAlready(principal.getName())){
